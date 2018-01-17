@@ -1,9 +1,9 @@
 
 <h1 align="center">
   <br>
-  <a href="https://ionicframework.com"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Ionic_Logo.svg/2000px-Ionic_Logo.svg.png" alt="Ionic" width="200"></a> + 
-  <a href="https://firebase.google.com/"><img src="https://firebase.google.com/_static/images/firebase/touchicon-180.png" alt="Firebase" width="80"></a>
-  
+  <a href="https://ionicframework.com" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Ionic_Logo.svg/2000px-Ionic_Logo.svg.png" alt="Ionic" width="200"></a> +
+  <a href="https://firebase.google.com/" target="_blank"><img src="https://firebase.google.com/_static/images/firebase/touchicon-180.png" alt="Firebase" width="80"></a>
+
   <br>
   Ionic 3 + Firebase Starter
   <br>
@@ -12,7 +12,8 @@
 <h4 align="center">A minimal <a href="https://ionicframework.com" target="_blank">Ionic</a> app built on <a href="https://firebase.google.com/" target="_blank">Firebase</a> with the <a href="https://github.com/angular/angularfire2" target="_blank">angularfire2</a> wrapper.</h4>
 
 <p align="center">
-  <a href="https://paypal.me/omarq">
+ <a href="https://app.buddy.works/blacksector/ionic3-firebase-starter/pipelines/pipeline/70216" target="_blank"><img src="https://app.buddy.works/blacksector/ionic3-firebase-starter/pipelines/pipeline/70216/badge.svg?token=af4d8667e92b34c324ca8837f78daa2d41315fa7f25dd2ce75f5729f167d36ac"></a>
+  <a href="https://paypal.me/omarq" target="_blank">
     <img src="https://img.shields.io/badge/$-donate-ff69b4.svg?maxAge=2592000&amp;style=flat">
   </a>
 </p>
@@ -108,4 +109,3 @@ MIT
 > [quazi.co](https://quazi.co) &nbsp;&middot;&nbsp;
 > GitHub [blacksector](https://github.com/blacksector) &nbsp;&middot;&nbsp;
 > Instagram [@quaziomar](https://instagram.com/quaziomar)
-
