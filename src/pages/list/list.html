@@ -1,0 +1,18 @@
+<ion-content>
+
+  <div (swipe)="back($event)">
+    <ion-item>
+      <button ion-button clear (click)="back($event)">
+        <ion-icon name="arrow-back" item-start></ion-icon>
+        Available Icons
+      </button>
+    </ion-item>
+
+    <ion-list no-lines>
+      <ion-item *ngFor="let icon of icons">
+        <ion-icon [name]="icon.name" item-start></ion-icon>
+          {{icon.name}}
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>

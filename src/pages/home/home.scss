@@ -1,0 +1,31 @@
+page-home {
+
+  .ion-item-border {
+    //border-radius: 6px !important;
+    // padding-left: 30px !important;
+    // margin-bottom: 0px;
+    border: 0.5px solid map-get($colors, "light");
+    // box-shadow: 5px 5px 2px grey;
+  }
+
+  #categories {
+    background: linear-gradient(white, lightgrey);
+    height: 100%;
+    ion-row {
+        margin-top: -7px;
+    }
+    #categoryButton {
+        height: 20vh;
+        &.img-bg {
+            background-size: cover;
+        }
+        label {
+            display: block;
+            padding-top: 5px;
+        }
+        ion-icon {
+            font-size: 30px;
+        }
+    }
+  }
+}

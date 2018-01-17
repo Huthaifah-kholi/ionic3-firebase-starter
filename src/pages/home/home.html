@@ -1,0 +1,27 @@
+<!-- <ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Home</ion-title>
+  </ion-navbar>
+</ion-header> -->
+
+<ion-content>
+
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <div padding [@myAnimation]>
+    <div text-center>
+      <p id="homePage">{{ greeting }}, {{ userData.displayName}}.</p>
+
+      <p>This is just a basic app. Why don't you add something?</p>
+    </div>
+
+    <button ion-button color="dark" block (click)="signOutClicked()">Sign Out</button>
+
+    <!-- <button ion-button secondary menuToggle>Toggle Menu</button> -->
+  </div>
+</ion-content>
