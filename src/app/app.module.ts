@@ -27,12 +27,12 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { TextareaAutoresizeDirective } from '../directives/textarea-autoresize/textarea-autoresize';
 
 export const firebaseConfig = {
-  apiKey: "",
-  authDomain: "",
-  databaseURL: "",
-  projectId: "",
-  storageBucket: "",
-  messagingSenderId: ""
+  apiKey: "AIzaSyDP3iwcWqnpOEd5_0zlF8UmjJVjNfn5TC0",
+  authDomain: "blind-glass.firebaseapp.com",
+  databaseURL: "https://blind-glass.firebaseio.com",
+  projectId: "blind-glass",
+  storageBucket: "blind-glass.appspot.com",
+  messagingSenderId: "53323038450"
 };
 
 
