@@ -1,11 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { NavController, ToastController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
+import { Geolocation, GeolocationOptions, Geoposition } from '@ionic-native/geolocation/ngx';
 
 import { trigger, transition, style, animate, state } from '@angular/animations';
 
 import { AngularFireAuth } from 'angularfire2/auth';
 
+declare var google;
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html',
@@ -29,19 +31,28 @@ import { AngularFireAuth } from 'angularfire2/auth';
   ]
 })
 export class HomePage {
-
+  @ViewChild('map') mapElement: ElementRef;
+  map: any;
+  currentMapTrack = null;
+ 
+  isTracking = false;
+  trackedRoute = [];
+  previousTracks = [];
   userData = {
     displayName: 'Stranger'
   };
 
 
   greeting = "Hello";
-
+  
+  options : GeolocationOptions;
+  currentPos : Geoposition;
 
   constructor(public navCtrl: NavController, public afAuth: AngularFireAuth,
-    public toastCtrl: ToastController) {
-
-    afAuth.authState.subscribe(user => {
+    public toastCtrl: ToastController,private geolocation: Geolocation) {
+      console.log("home constructor");
+      
+    afAuth.authState.subscribe(user => { 
       if (user) {
         this.userData = user;
       }
@@ -49,6 +60,31 @@ export class HomePage {
 
     this.setGreeting();
   }
+
+  ionViewDidEnter(){
+    //Set latitude and longitude of some place
+    this.map = new google.maps.Map(document.getElementById('map'), {
+      center: { lat: -34.9011, lng: -56.1645 },
+      zoom: 15
+    });
+    this.getUserPosition();
+
+  
+  }
+  getUserPosition(){
+    this.options = {
+        enableHighAccuracy : true
+    };
+
+    this.geolocation.getCurrentPosition(this.options).then((pos : Geoposition) => {
+
+        this.currentPos = pos;      
+        console.log(pos);
+
+    },(err : PositionError)=>{
+        console.log("error : " + err.message);
+    });
+}
 
   createToast(message: string) {
     return this.toastCtrl.create({

@@ -12,7 +12,7 @@
   <ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
-
+ 
   <div padding [@myAnimation]>
     <div text-center>
       <p id="homePage">{{ greeting }}, {{ userData.displayName}}.</p>
@@ -24,4 +24,5 @@
 
     <!-- <button ion-button secondary menuToggle>Toggle Menu</button> -->
   </div>
+  <div #map id="map"></div>
 </ion-content>
