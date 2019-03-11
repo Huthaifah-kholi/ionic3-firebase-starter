@@ -17,15 +17,14 @@
     <div text-center>
       <p id="homePage">{{ greeting }}, {{ userData.displayName}}.</p>
 
-      <p>This is just a basic app. Why don't you add something?</p>
+      <p>Blind Application</p>
     </div>
 
     <button ion-button color="dark" block (click)="signOutClicked()">Sign Out</button>
-    <button ion-button color="dark" block (click)="getUserPosition()">refresh</button>
 
     <!-- <button ion-button secondary menuToggle>Toggle Menu</button> -->
   </div>
+  <button ion-button (click)="getUsrLocation()">Get my location</button>
   <div id="map_canvas">
-    <button ion-button (click)="onButtonClick($event)">Demo</button>
   </div>
 </ion-content>

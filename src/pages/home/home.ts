@@ -42,28 +42,19 @@ declare var google;
   ]
 })
 export class HomePage {
-  // @ViewChild('map') mapElement: ElementRef;
-  // // map: any;
-  // currentMapTrack = null;
- 
-  // isTracking = false;
-  // trackedRoute = [];
-  // previousTracks = [];
+
   userData = {
     displayName: 'Stranger'
   };
-  // google
   map: GoogleMap;
 
   greeting = "Hello";
   
-  // options : GeolocationOptions;
-  // currentPos : Geoposition;
+
 
   constructor(public navCtrl: NavController, public afAuth: AngularFireAuth,
     public toastCtrl: ToastController,private geolocation: Geolocation) {
       console.log("home constructor");
-      
     afAuth.authState.subscribe(user => { 
       if (user) {
         this.userData = user;
@@ -75,6 +66,8 @@ export class HomePage {
 
   ionViewDidLoad() {
     this.loadMap();
+    this.getUsrLocation();
+
   }
   loadMap() {
     // Create a map after the view is loaded.
@@ -91,27 +84,63 @@ export class HomePage {
     });
 
   }
-
-  onButtonClick() {
+  getUsrLocation(){
     this.map.clear();
     console.log("onButtonClick() called");
     
-    // Get the location of you
+    // اجلب موقعي 
     this.map.getMyLocation()
       .then((location: MyLocation) => {
         console.log(JSON.stringify(location, null ,2));
         console.log("getMylocaion >> promise");
         
-        // Move the map camera to the location with animation
+        // حركة البحث عن المكان لتحديده
         this.map.animateCamera({
           target: location.latLng,
           zoom: 17,
           tilt: 30
         })
         .then(() => {
-          // add a marker
+          // اضافة علامة بمكان الكفيف 
           console.log("animateCamera");
+          // المعلومات الخاصة بالعلامة
+          let marker: Marker = this.map.addMarkerSync({
+            title: 'مكانك',
+            snippet: 'أرجوا ان تكون بخير هنا ',
+            position: location.latLng,
+            animation: GoogleMapsAnimation.BOUNCE
+          });
 
+          // show the infoWindow
+          marker.showInfoWindow();
+
+          // If clicked it, display the alert
+          marker.on(GoogleMapsEvent.MARKER_CLICK).subscribe(() => {
+            this.showToast('clicked!');
+          });
+        });
+      });
+  }
+  onButtonClick() {
+    this.map.clear();
+    console.log("onButtonClick() called");
+    
+    // اجلب موقعي 
+    this.map.getMyLocation()
+      .then((location: MyLocation) => {
+        console.log(JSON.stringify(location, null ,2));
+        console.log("getMylocaion >> promise");
+        
+        // حركة البحث عن المكان لتحديده
+        this.map.animateCamera({
+          target: location.latLng,
+          zoom: 17,
+          tilt: 30
+        })
+        .then(() => {
+          // اضافة علامة بمكان الكفيف 
+          console.log("animateCamera");
+          // المعلومات الخاصة بالعلامة
           let marker: Marker = this.map.addMarkerSync({
             title: 'مكانك',
             snippet: 'أرجوا ان تكون بخير هنا ',
@@ -143,9 +172,8 @@ export class HomePage {
 
   getUserPosition(){
     console.log("getUserPosition() called");
-    // let _this=this;
-    // let locationOptions = { timeout: 10000, enableHighAccuracy: true };
-      if(navigator.geolocation) {
+
+    if(navigator.geolocation) {
         console.log("navigator.geolocation is available");
         navigator.geolocation.getCurrentPosition(function(position) {
           console.log("current position acquired",position);

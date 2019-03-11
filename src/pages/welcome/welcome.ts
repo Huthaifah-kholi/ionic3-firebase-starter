@@ -28,18 +28,18 @@ export class WelcomePage {
   }
 
   login () {
+    // go to login page 
     this.navCtrl.push(LoginPage);
   }
 
   signup() {
+    // go to sign up page 
     this.navCtrl.push(SignupPage);
   }
 
-  googleSignUp() {
-    this.auth.googleSignUp();
-  }
 
   forgotPass() {
+    // اضهر الرسالة الخاصة باعادة كلمة المرور
     let prompt = this.alertCtrl.create({
       title: 'Enter Your Email',
       message: "A new password will be sent to your email",
@@ -61,13 +61,13 @@ export class WelcomePage {
           handler: data => {
 
 
-            //add preloader
+            // اظهار عملية البحث 
             let loading = this.loadingCtrl.create({
               dismissOnPageChange: true,
               content: 'Resetting your password..'
             });
             loading.present();
-            //call usersservice
+            // الاتصال بال firebase لاعداة تعيين كلمة المرور
             firebase.auth().sendPasswordResetEmail(data.recoverEmail).then(() => {
               //add toast
               loading.dismiss().then(() => {
@@ -91,7 +91,7 @@ export class WelcomePage {
                 alert.present();
               })
 
-
+              // نهاية الاتصال بال firebase
             });
           }
         }

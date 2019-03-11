@@ -26,13 +26,14 @@ export class SignupPage {
     private formBuilder: FormBuilder,  public auth: AuthProvider,
     public toastCtrl: ToastController, public viewCtrl: ViewController) {
 
-    // building the form
-    this.emailSignUpForm = formBuilder.group({
+     // يجب ان تكون كلمة السر اكبر من ٦ حروف والتاكد من فورمات الايميل 
+     this.emailSignUpForm = formBuilder.group({
       email: ['', Validators.compose([Validators.required, Validators.email])],
       password: ['', Validators.compose([Validators.minLength(6), Validators.required])]
     });
 
   }
+  // اظهار رسالة بالاخطاء
 
   createToast(message: string) {
     return this.toastCtrl.create({
@@ -40,29 +41,24 @@ export class SignupPage {
       duration: 3000
     })
   }
+  //عملية انشاء حساب
 
   emailSignUpFormSubmit() {
-    // first we check, if the form is valid
-    if (!this.emailSignUpForm.valid) {
+     // اذا كان هناك خطا في الفورم اطلع له رسالة
+     if (!this.emailSignUpForm.valid) {
       this.createToast('Form not valid').present();
       return
     }
     else {
-      // if the form is valid, we continue with validation
+      // ابحث عن وجود هذا المستخدم في قاعدة البيانات firebase
       this.auth.signUpUser(this.emailSignUpForm.value.email, this.emailSignUpForm.value.password)
         .then(() => {
-          // showing succesfull message
+          // تم تسجيل الدخول واظهار رسالة للمستخدم بنجاح العملية
           this.createToast('Signed up with email: ' + this.emailSignUpForm.value.email).present();
-          // closing dialog
           this.viewCtrl.dismiss();
         },
-        /**
-         * Handle Authentication errors
-         * Here you can customise error messages like our example.
-         * https://firebase.google.com/docs/reference/js/firebase.auth.Error
-         *
-         * mismatch with error interface: https://github.com/angular/angularfire2/issues/976
-         */
+        
+        //  اذا لم تنجح عملية الاتصال قم باظهار  رسالة بالخطأ
         (error) => {
           this.createToast(error.message).present();
         })

@@ -24,13 +24,14 @@ export class LoginPage {
     private formBuilder: FormBuilder,  public auth: AuthProvider,
     public toastCtrl: ToastController, public viewCtrl: ViewController) {
 
-     // building the form
+     // يجب ان تكون كلمة السر اكبر من ٦ حروف والتاكد من فورمات الايميل 
      this.signInForm = formBuilder.group({
        email: ['', Validators.compose([Validators.required, Validators.email])],
        password: ['', Validators.compose([Validators.minLength(6), Validators.required])]
      });
   }
 
+  // اظهار رسالة بالاخطاء
   createToast(message: string) {
     return this.toastCtrl.create({
       message,
@@ -38,30 +39,22 @@ export class LoginPage {
     })
   }
 
+  // عملية تسجيل الدخول
   signInFormSubmit() {
 
-     // first we check, if the form is valid
+     // اذا كان هناك خطا في الفورم اطلع له رسالة
      if (!this.signInForm.valid) {
        this.createToast('Ooops, form not valid...').present();
        return
      } else {
 
-       // if the form is valid, we continue with validation
+       // ابحث عن وجود هذا المستخدم في قاعدة البيانات firebase
        this.auth.signInUser(this.signInForm.value.email, this.signInForm.value.password)
          .then(() => {
-           // showing succesfull message
+           // تم تسجيل الدخول واظهار رسالة للمستخدم بنجاح العملية
            this.createToast('Signed in with email: ' + this.signInForm.value.email).present();
-           // closing dialog
-           //this.viewCtrl.dismiss();
          },
-
-         /**
-          * Handle Authentication errors
-          * Here you can customise error messages like our example.
-          * https://firebase.google.com/docs/reference/js/firebase.auth.Error
-          *
-          * mismatch with error interface: https://github.com/angular/angularfire2/issues/976
-          */
+         // اذا لم تنجح عملية الاتصال قم باظهار  رسالة بالخطأ
          (error: any) => {
            switch (error.code) {
              case 'auth/invalid-api-key':
