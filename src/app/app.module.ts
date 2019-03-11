@@ -26,6 +26,7 @@ import { SignupPage } from '../pages/signup/signup';
 // import { IonicSwipeAllModule } from 'ionic-swipe-all';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { TextareaAutoresizeDirective } from '../directives/textarea-autoresize/textarea-autoresize';
+import { GoogleMaps } from '@ionic-native/google-maps';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyDP3iwcWqnpOEd5_0zlF8UmjJVjNfn5TC0",
@@ -70,7 +71,8 @@ export const firebaseConfig = {
     AngularFireDatabase,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthProvider,
-    Geolocation
+    Geolocation,
+    GoogleMaps
   ]
 })
 export class AppModule {}

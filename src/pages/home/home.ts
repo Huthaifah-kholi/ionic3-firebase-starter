@@ -11,7 +11,9 @@ import {
   CameraPosition,
   MarkerOptions,
   Marker,
-  Environment
+  Environment,
+  GoogleMapsAnimation,
+  MyLocation
 } from '@ionic-native/google-maps';
 
 import { AngularFireAuth } from 'angularfire2/auth';
@@ -40,13 +42,13 @@ declare var google;
   ]
 })
 export class HomePage {
-  @ViewChild('map') mapElement: ElementRef;
-  // map: any;
-  currentMapTrack = null;
+  // @ViewChild('map') mapElement: ElementRef;
+  // // map: any;
+  // currentMapTrack = null;
  
-  isTracking = false;
-  trackedRoute = [];
-  previousTracks = [];
+  // isTracking = false;
+  // trackedRoute = [];
+  // previousTracks = [];
   userData = {
     displayName: 'Stranger'
   };
@@ -68,46 +70,76 @@ export class HomePage {
       }
     });
 
-    this.setGreeting();
+    // this.setGreeting();
   }
 
-  ionViewDidEnter(){
-    //Set latitude and longitude of some place
-    // this.getUserPosition();
-    
-        // This code is necessary for browser
-        Environment.setEnv({
-          'API_KEY_FOR_BROWSER_RELEASE': '(your api key for `https://`)',
-          'API_KEY_FOR_BROWSER_DEBUG': '(your api key for `http://`)'
-        });
-    
-        let mapOptions: GoogleMapOptions = {
-          camera: {
-             target: {
-               lat: 43.0741904,
-               lng: -89.3809802
-             },
-             zoom: 18,
-             tilt: 30
-           }
-        };
-    
-        this.map = GoogleMaps.create('map_canvas', mapOptions);
-    
-        let marker: Marker = this.map.addMarkerSync({
-          title: 'Ionic',
-          icon: 'blue',
-          animation: 'DROP',
-          position: {
-            lat: 43.0741904,
-            lng: -89.3809802
-          }
-        });
-        marker.on(GoogleMapsEvent.MARKER_CLICK).subscribe(() => {
-          alert('clicked');
-        });
-      
+  ionViewDidLoad() {
+    this.loadMap();
   }
+  loadMap() {
+    // Create a map after the view is loaded.
+    // (platform is already ready in app.component.ts)
+    this.map = GoogleMaps.create('map_canvas', {
+      camera: {
+        target: {
+          lat: 43.0741704,
+          lng: -89.3809802
+        },
+        zoom: 18,
+        tilt: 30
+      }
+    });
+
+  }
+
+  onButtonClick() {
+    this.map.clear();
+    console.log("onButtonClick() called");
+    
+    // Get the location of you
+    this.map.getMyLocation()
+      .then((location: MyLocation) => {
+        console.log(JSON.stringify(location, null ,2));
+        console.log("getMylocaion >> promise");
+        
+        // Move the map camera to the location with animation
+        this.map.animateCamera({
+          target: location.latLng,
+          zoom: 17,
+          tilt: 30
+        })
+        .then(() => {
+          // add a marker
+          console.log("animateCamera");
+
+          let marker: Marker = this.map.addMarkerSync({
+            title: '@ionic-native/google-maps plugin!',
+            snippet: 'This plugin is awesome!',
+            position: location.latLng,
+            animation: GoogleMapsAnimation.BOUNCE
+          });
+
+          // show the infoWindow
+          marker.showInfoWindow();
+
+          // If clicked it, display the alert
+          marker.on(GoogleMapsEvent.MARKER_CLICK).subscribe(() => {
+            this.showToast('clicked!');
+          });
+        });
+      });
+  }
+
+  showToast(message: string) {
+    let toast = this.toastCtrl.create({
+      message: message,
+      duration: 2000,
+      position: 'middle'
+    });
+
+    toast.present(toast);
+  }
+
 
   getUserPosition(){
     console.log("getUserPosition() called");
