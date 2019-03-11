@@ -113,8 +113,8 @@ export class HomePage {
           console.log("animateCamera");
 
           let marker: Marker = this.map.addMarkerSync({
-            title: '@ionic-native/google-maps plugin!',
-            snippet: 'This plugin is awesome!',
+            title: 'مكانك',
+            snippet: 'أرجوا ان تكون بخير هنا ',
             position: location.latLng,
             animation: GoogleMapsAnimation.BOUNCE
           });
