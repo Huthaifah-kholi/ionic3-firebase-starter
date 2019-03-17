@@ -29,12 +29,12 @@ import { TextareaAutoresizeDirective } from '../directives/textarea-autoresize/t
 import { GoogleMaps } from '@ionic-native/google-maps';
 
 export const firebaseConfig = {
-  apiKey: "AIzaSyDP3iwcWqnpOEd5_0zlF8UmjJVjNfn5TC0",
-  authDomain: "blind-glass.firebaseapp.com",
-  databaseURL: "https://blind-glass.firebaseio.com",
-  projectId: "blind-glass",
-  storageBucket: "blind-glass.appspot.com",
-  messagingSenderId: "53323038450"
+  apiKey: "AIzaSyBWYR52-kTOp8niVj4zEldck17wl55szu0",
+  authDomain: "blind-glasses.firebaseapp.com",
+  databaseURL: "https://blind-glasses.firebaseio.com",
+  projectId: "blind-glasses",
+  storageBucket: "",
+  messagingSenderId: "1077408818038"
 };
 
 
