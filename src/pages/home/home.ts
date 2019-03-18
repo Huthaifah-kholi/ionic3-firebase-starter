@@ -82,12 +82,12 @@ export class HomePage {
         tilt: 30
       }
     });
-
+    console.log("this.map "+this.map);
+    
   }
   getUsrLocation(){
     this.map.clear();
     console.log("onButtonClick() called");
-    
     // اجلب موقعي 
     this.map.getMyLocation()
       .then((location: MyLocation) => {
