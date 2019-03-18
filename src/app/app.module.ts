@@ -12,6 +12,9 @@ import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/dat
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AuthProvider } from '../providers/auth/auth';
 
+// Bluetooth serial
+import { BluetoothSerial } from '@ionic-native/bluetooth-serial';
+
 // Pages
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -21,6 +24,7 @@ import { ListPage } from '../pages/list/list';
 import { WelcomePage } from '../pages/welcome/welcome';
 import { LoginPage } from '../pages/login/login';
 import { SignupPage } from '../pages/signup/signup';
+import { BluetoothPage } from './../pages/bluetooth/bluetooth';
 
 // Modules
 // import { IonicSwipeAllModule } from 'ionic-swipe-all';
@@ -46,6 +50,7 @@ export const firebaseConfig = {
     WelcomePage,
     LoginPage,
     SignupPage,
+    BluetoothPage,
     TextareaAutoresizeDirective
   ],
   imports: [
@@ -63,7 +68,8 @@ export const firebaseConfig = {
     ListPage,
     WelcomePage,
     LoginPage,
-    SignupPage
+    SignupPage,
+    BluetoothPage
   ],
   providers: [
     StatusBar,
@@ -72,7 +78,8 @@ export const firebaseConfig = {
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthProvider,
     // Geolocation,
-    GoogleMaps
+    GoogleMaps,
+    BluetoothSerial
   ]
 })
 export class AppModule {}

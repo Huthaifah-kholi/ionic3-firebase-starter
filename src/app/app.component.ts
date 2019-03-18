@@ -8,6 +8,7 @@ import { ListPage } from '../pages/list/list';
 import { WelcomePage } from '../pages/welcome/welcome';
 
 import { AngularFireAuth } from 'angularfire2/auth';
+import { BluetoothPage } from '../pages/bluetooth/bluetooth';
 
 @Component({
   templateUrl: 'app.html'
@@ -53,7 +54,7 @@ export class MyApp {
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Home', component: HomePage },
-      { title: 'List', component: ListPage }
+      { title: 'Bluetooth', component: BluetoothPage }
     ];
 
   }
