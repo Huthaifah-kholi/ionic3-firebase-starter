@@ -1,11 +1,11 @@
-<!-- <ion-header>
+<ion-header>
   <ion-navbar>
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Home</ion-title>
+    <ion-title>Map</ion-title>
   </ion-navbar>
-</ion-header> -->
+</ion-header>
 
 <ion-content>
 
@@ -15,16 +15,20 @@
  
   <div padding [@myAnimation]>
     <div text-center>
-      <p id="homePage">{{ greeting }}, {{ userData.displayName}}.</p>
+      <p id="homePage">{{ greeting }}, {{ userData.email}}.</p>
 
       <p>Blind Application</p>
     </div>
 
-    <button ion-button color="dark" block (click)="signOutClicked()">Sign Out</button>
 
-    <!-- <button ion-button secondary menuToggle>Toggle Menu</button> -->
+    <button ion-button color="dark" block (click)="signOutClicked()">Sign Out</button>
   </div>
-  <button ion-button (click)="getUsrLocation()">Get my location</button>
   <div id="map_canvas">
+  </div>
+  <div *ngIf="!showParent">
+    <button ion-button (click)="psuhUserLocation()">Get my location</button>
+  </div>
+  <div *ngIf="showParent">
+    <button ion-button (click)="getUsrLocation()">Get my Blind location</button>
   </div>
 </ion-content>
