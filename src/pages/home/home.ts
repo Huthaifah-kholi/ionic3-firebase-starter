@@ -1,7 +1,7 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { NavController, ToastController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
-import { Geolocation, GeolocationOptions, Geoposition } from '@ionic-native/geolocation/ngx';
+// import { Geolocation, GeolocationOptions, Geoposition } from '@ionic-native/geolocation/ngx';
 import { trigger, transition, style, animate, state } from '@angular/animations';
 import {
   GoogleMaps,
@@ -53,7 +53,7 @@ export class HomePage {
 
 
   constructor(public navCtrl: NavController, public afAuth: AngularFireAuth,
-    public toastCtrl: ToastController,private geolocation: Geolocation) {
+    public toastCtrl: ToastController) {
       console.log("home constructor");
     afAuth.authState.subscribe(user => { 
       if (user) {
@@ -169,30 +169,6 @@ export class HomePage {
     toast.present(toast);
   }
 
-
-  getUserPosition(){
-    console.log("getUserPosition() called");
-
-    if(navigator.geolocation) {
-        console.log("navigator.geolocation is available");
-        navigator.geolocation.getCurrentPosition(function(position) {
-          console.log("current position acquired",position);
-          // this.viewMap(position.coords.latitude, position.coords.longitude);
-          this.map = new google.maps.Map(document.getElementById('map'), {
-            center: { lat: position.coords.latitude, lng: position.coords.longitude},
-            zoom: 20
-          });
-          this.createToast("potion :"+position);
-        },function(error) {
-          console.log("error ",error);
-          
-        },{
-          enableHighAccuracy: true 
-      }
-        )  
-      }
-    
-}
 viewMap(lat,lng){
   this.map = new google.maps.Map(document.getElementById('map'), {
     center: { lat: lat, lng: lng},
