@@ -15,6 +15,9 @@ import { AuthProvider } from '../providers/auth/auth';
 // Bluetooth serial
 import { BluetoothSerial } from '@ionic-native/bluetooth-serial';
 
+// Background mode
+import { BackgroundMode } from '@ionic-native/background-mode';
+
 // Pages
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -37,7 +40,7 @@ export const firebaseConfig = {
   authDomain: "blind-glasses.firebaseapp.com",
   databaseURL: "https://blind-glasses.firebaseio.com",
   projectId: "blind-glasses",
-  storageBucket: "",
+  storageBucket: "blind-glasses.appspot.com",
   messagingSenderId: "1077408818038"
 };
 
@@ -79,7 +82,8 @@ export const firebaseConfig = {
     AuthProvider,
     // Geolocation,
     GoogleMaps,
-    BluetoothSerial
+    BluetoothSerial,
+    BackgroundMode
   ]
 })
 export class AppModule {}

@@ -27,13 +27,13 @@
   <!-- الشبك بالنظارة  -->
   <button ion-button full class="submit-button" *ngIf="listToggle" (click)="selectDevice()">
     <ion-icon name="bluetooth"></ion-icon>&nbsp;Connect Bluetooth Devices</button>
-  <ion-list>
+  <!-- <ion-list>
     <ion-item>
       <ion-label floating>Type The Data You want to Send</ion-label>
       <ion-input type="text" name="datasend" [(ngModel)]="dataSend"></ion-input>
     </ion-item>
-  </ion-list>
+  </ion-list> -->
   <button ion-button full class="submit-button" (click)="sendData()">
-    <ion-icon name="send"></ion-icon>&nbsp;Send Data Via Bluetooth
+    <ion-icon name="send"></ion-icon>&nbsp;Resend Data Via Bluetooth
   </button>
 </ion-content>

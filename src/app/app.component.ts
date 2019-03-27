@@ -6,6 +6,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { WelcomePage } from '../pages/welcome/welcome';
+import { BackgroundMode } from '@ionic-native/background-mode';
 
 import { AngularFireAuth } from 'angularfire2/auth';
 import { BluetoothPage } from '../pages/bluetooth/bluetooth';
@@ -27,7 +28,9 @@ export class MyApp {
   pages: Array<{title: string, component: any}>;
 
   constructor(public platform: Platform, public statusBar: StatusBar,
-    public splashScreen: SplashScreen, public afAuth: AngularFireAuth) {
+    public splashScreen: SplashScreen,
+    public backgroundMode: BackgroundMode,
+      public afAuth: AngularFireAuth) {
 
     // here we determine, if user is aunthenticated/have data in our db
     // thats we make before platform ready
@@ -69,6 +72,7 @@ export class MyApp {
       this.statusBar.backgroundColorByHexString('#ffffff');
       //this.statusBar.styleDefault();
       this.splashScreen.hide();
+      this.backgroundMode.enable();
     });
   }
 
