@@ -69,25 +69,27 @@ export class BluetoothPage {
       this.deviceConnected();
       // this.showToast("Successfully Connected");
       this.sendData();
+      setInterval(()=>{this.send();}, 60000);
+      
       // this.read1();
-      const source = timer(1000);
-      // const source = timer(3000);
-      const subscribe = source.subscribe(val => {
-        console.log(val);
-        this.sendData();
-      });
-      this.backgroundMode.on("enable").subscribe(()=>{
-        console.log("background mode enabled");
-        this.showToast("Enable the background mode");
-        this.bluetootherial.connect(add).subscribe(success => {
-          // const source = timer(600000);
-          const source = timer(1000);
-          const subscribe = source.subscribe(val => {
-            console.log(val);
-            this.sendData();
-          });
-        })
-      });
+    //   const source = timer(1000);
+    //   // const source = timer(3000);
+    //   const subscribe = source.subscribe(val => {
+    //     console.log(val);
+    //     this.sendData();
+    //   });
+    //   this.backgroundMode.on("enable").subscribe(()=>{
+    //     console.log("background mode enabled");
+    //     this.showToast("Enable the background mode");
+    //     this.bluetootherial.connect(add).subscribe(success => {
+    //       // const source = timer(600000);
+    //       const source = timer(1000);
+    //       const subscribe = source.subscribe(val => {
+    //         console.log(val);
+    //         this.sendData();
+    //       });
+    //     })
+    //   });
     
     }, error => {
       this.showError("Error:Connecting to Device");
@@ -187,9 +189,9 @@ export class BluetoothPage {
       }
       })
   }
-  read1(){
+  send(){
     this.ngZone.run(()=>{
-      this.read();
+      this.sendData();
     })
   }
 }
